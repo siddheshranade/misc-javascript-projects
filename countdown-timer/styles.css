@@ -4,4 +4,43 @@ body {
     font-size: 16px;
     font-family: sans-serif;
     box-sizing: border-box;
+    min-height: 100vh;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    border: 1px solid salmon;
+}
+
+h1 {
+    margin-top: -16rem;
+
+    border: 1px solid blueviolet;
+}
+
+#timer-container {
+
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+
+    border: 1px solid orangered;
+}
+
+.time {
+    margin: 0.1rem 0.5rem;
+    padding: 0 0.5rem;
+    text-align: center;
+    border: 1px solid forestgreen;
+}
+
+#months {
+    border: 1px solid greenyellow;
+}
+
+#months-text {
+    border: 1px solid darkturquoise;
 }
