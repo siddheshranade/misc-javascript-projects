@@ -4,9 +4,9 @@ let hoursDisplay = document.querySelector('#hours');
 let minutesDisplay = document.querySelector('#minutes');
 let secondsDisplay = document.querySelector('#seconds');
 
-setInterval(getTimeLeftForConcert, 1000);
+setInterval(displayCountdown, 1000);
 
-function getTimeLeftForConcert() {
+function displayCountdown() {
     let currentDateAndTime = new Date();
     let concertDateAndTime = new Date(2022, 7, 4, 19, 30);
     let diffInMilliseconds = concertDateAndTime - currentDateAndTime;
