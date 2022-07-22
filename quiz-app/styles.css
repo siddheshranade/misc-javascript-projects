@@ -5,3 +5,8 @@ body {
     font-family: sans-serif;
     box-sizing: border-box;
 }
+
+#quiz-container {
+    margin: 20%;
+    border: 1px solid orangered;
+}
