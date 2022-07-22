@@ -68,7 +68,7 @@ function deselectAnswers() {
 function handleQuizSubmit(e) {
     let answer = getAnswer();
 
-    if (!answer) return;
+    // if (!answer) return;
 
     let currentQuestion = quizData[quizQuestionIndex];
     if (answer === currentQuestion['correct']) {
@@ -97,7 +97,7 @@ function getAnswer() {
 function renderFinalScreen() {
     quizContainerEl.innerHTML =
         `
-        <h2>Your total score was ${score} out of 3.</h2>
+        <h2>Your total score was ${score} out of 3!</h2>
         <button onclick="location.reload()">Reload</button>
         `;
 }
