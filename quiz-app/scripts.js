@@ -40,25 +40,29 @@ const optionB = document.querySelector('#b-text');
 const optionC = document.querySelector('#c-text');
 const optionD = document.querySelector('#d-text');
 let options = document.querySelectorAll('input[name="quiz"]');
+
 submitButtonEl.addEventListener('click', handleQuizSubmit);
 
-renderQuestion(0);
+loadQuestion(quizQuestionIndex);
 
 /* III. Function definitions */
 
-function renderQuestion(index) {
-    // if (index >= quizData.length) {
-    //     renderFinalScreen();
-    //     return;
-    // }
+function loadQuestion(index) {
+    deselectAnswers();
 
-    let currentQ = quizData[index];
+    let currentQuestion = quizData[index];
 
-    questionEl.innerHTML = currentQ.question;
-    optionA.innerHTML = currentQ.a;
-    optionB.innerHTML = currentQ.b;
-    optionC.innerHTML = currentQ.c;
-    optionD.innerHTML = currentQ.d;
+    questionEl.innerHTML = currentQuestion.question;
+    optionA.innerHTML = currentQuestion.a;
+    optionB.innerHTML = currentQuestion.b;
+    optionC.innerHTML = currentQuestion.c;
+    optionD.innerHTML = currentQuestion.d;
+}
+
+function deselectAnswers() {
+    options.forEach(option => {
+        option.checked = false;
+    })
 }
 
 function handleQuizSubmit(e) {
@@ -73,7 +77,7 @@ function handleQuizSubmit(e) {
 
     quizQuestionIndex++;
     if (quizQuestionIndex < quizData.length) {
-        renderQuestion(quizQuestionIndex);
+        loadQuestion(quizQuestionIndex);
     } else {
         renderFinalScreen();
     }
@@ -93,7 +97,7 @@ function getAnswer() {
 function renderFinalScreen() {
     quizContainerEl.innerHTML =
         `
-        <p>You\'re done with the quiz!</p>
-        <p>Your total score was ${score} out of 3.</p>
+        <h2>Your total score was ${score} out of 3.</h2>
+        <button onclick="location.reload()">Reload</button>
         `;
 }
