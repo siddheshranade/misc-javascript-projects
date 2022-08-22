@@ -66,7 +66,7 @@ function deselectAnswers() {
 }
 
 function handleQuizSubmit(e) {
-    let answer = getAnswer();
+    let answer = getUserSelectedAnswer();
 
     if (!answer) return;
 
@@ -83,15 +83,12 @@ function handleQuizSubmit(e) {
     }
 }
 
-function getAnswer() {
-    let answer;
+function getUserSelectedAnswer() {
     for (let i = 0; i < options.length; i++) {
         if (options[i].checked) {
-            answer = options[i].value;
+            return options[i].value;
         }
     }
-
-    return answer;
 }
 
 function renderFinalScreen() {
