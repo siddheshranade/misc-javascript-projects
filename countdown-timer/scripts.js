@@ -8,7 +8,7 @@ setInterval(displayCountdown, 1000);
 
 function displayCountdown() {
     let currentDateAndTime = new Date();
-    let concertDateAndTime = new Date(2022, 7, 4, 19, 30);
+    let concertDateAndTime = new Date(2023, 7, 4, 19, 30);
     let diffInMilliseconds = concertDateAndTime - currentDateAndTime;
 
     if (diffInMilliseconds < 0) {
@@ -17,16 +17,18 @@ function displayCountdown() {
     }
 
     // All consts in milliseconds
+    const ONE_MONTH = 1000 * 60 * 60 * 24 * 30;
     const ONE_DAY = 1000 * 60 * 60 * 24;
     const ONE_HOUR = 1000 * 60 * 60;
     const ONE_MINUTE = 1000 * 60;
     const ONE_SECOND = 1000;
 
+    const remainingDays = diffInMilliseconds % ONE_MONTH;
     const remainingHours = diffInMilliseconds % ONE_DAY;
     const remainingMinutes = remainingHours % ONE_HOUR;
 
-    let months = '0'; // TODO Fix
-    let days = Math.floor(diffInMilliseconds / ONE_DAY).toString();
+    let months = Math.floor(diffInMilliseconds / ONE_MONTH).toString();
+    let days = Math.floor(remainingDays / ONE_DAY).toString();
     let hours = Math.floor(remainingHours / ONE_HOUR).toString();
     let minutes = Math.floor(remainingMinutes / ONE_MINUTE).toString();
     let seconds = Math.floor((remainingMinutes % ONE_MINUTE) / ONE_SECOND).toString();
