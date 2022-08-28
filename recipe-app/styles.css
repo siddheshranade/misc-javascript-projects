@@ -9,17 +9,17 @@ body {
     background: #ece9e6;
     height: 100vh;
 
-    display: flex;
+    display: flex; /* Centers phone to screen */
     align-items: center;
     justify-content: center;
 }
 
 #parent-div {
     background: #fff;
-    width: 400px;
-    min-height: 600px;
+    width: 350px;
+    height: 600px;
     max-width: 100%;
-    border-radius: 3px;
+    border-radius: 5px;
     box-shadow: 0 0 10px 2px rgba(0, 0, 0, 0.1); /* horizontal, vertical, blur radius, spread radius, color */
 
     display: flex;
@@ -28,10 +28,10 @@ body {
 }
 
 #search-div {
-    width: 100%;
     height: 75px;
 
     display: flex;
+    flex-direction: row;
     justify-content: center;
     align-items: center;
 
@@ -39,7 +39,20 @@ body {
 }
 
 #search-div form {
-    display: flex; /* Needed to align button correctly with input text */
+    display: flex; /* To vertically align button correctly with search box */
+    /*border: 1px solid orange;*/
+}
+
+#bars-icon {
+    /*padding: 5px;*/
+    margin-right: 20px;
+
+    /*border: 1px solid red;*/
+}
+
+#bars-icon:hover {
+    cursor: pointer;
+    background: red;
 }
 
 #search-input {
@@ -60,7 +73,8 @@ body {
     margin-left: 6px;
     /*margin-top: 50px;*/
 
-    /*border: 1px solid fuchsia;*/
+    /*border: 1px solid red;*/
+    /*border-radius: 3px;*/
 }
 
 #search-button:hover {
@@ -70,15 +84,23 @@ body {
 #favourite-meals-div {
     background: #f3e1ff;
     width: 100%;
-    min-height: 200px;
+    /*min-height: 200px;*/
     flex-grow: 1;
 
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
 }
 
-#all-recipes-div {
+#all-fav-meals {
+    width: 100%;
+    height: 100%;
+
+    /*border: 1px solid black;*/
+}
+
+#all-meals-div {
+    flex-grow: 2.5;
     height: 325px;
 }
