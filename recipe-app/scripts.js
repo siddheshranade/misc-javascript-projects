@@ -26,8 +26,12 @@ function searchMeals() {
         .then(res => res.json())
         .then(data => {
             let meals = data['meals'];
+            if (!meals) {
+                return;
+            }
+
+            allMealsDiv.innerHTML = ''; // Remove random meal that was displayed on page load
             meals.forEach(meal => {
-                allMealsDiv.innerHTML = ''; // Remove initially displayed random meal
                 displayMealPreviewTile(meal)
             });
         });
