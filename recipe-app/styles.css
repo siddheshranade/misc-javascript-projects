@@ -113,17 +113,17 @@ body {
     /*border: 1px solid brown;*/
 }
 
-#meal-image {
+.meal-image {
     object-fit: cover; /* Crops instead of stretching the image */
     height: 250px;
     width: 100%;
 }
 
-#meal-name {
+.meal-name {
     margin: 0;
 }
 
-#meal-body-div {
+.meal-body-div {
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -132,7 +132,7 @@ body {
     /*border: 1px solid yellow;*/
 }
 
-#fav-btn {
+.fav-btn {
     border: none;
     background-color: transparent;
     cursor: pointer;
@@ -162,7 +162,7 @@ body {
 
 .popup-container.hidden {
     opacity: 0;
-    pointer-events: none; /* The div is always on page. This property allows us to click past it into the main div */
+    pointer-events: none; /* This div is always on page. This property allows us to click past it into the main div */
 }
 
 .popup {

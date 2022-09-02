@@ -8,7 +8,8 @@ const popupCloseButton = document.getElementById('close-popup');
 const searchInput = document.querySelector('#search-input');
 const searchForm = document.querySelector('form');
 
-// On page load:
+let favouriteMealIds = [];
+
 displayRandomMeal();
 fetchFavMeals();
 
@@ -53,22 +54,20 @@ function displayMealPreviewTile(mealData) {
 
     mealDiv.innerHTML =
         `
-        <div id="meal-image-div">
+        <div class="meal-image-div">
             <img
-                id="meal-image"
+                class="meal-image"
                 src="${mealData.strMealThumb}"
                 alt="${mealData.strMeal}"
             />
         </div>
-        <div id="meal-body-div">
-            <h4 id="meal-name">${mealData.strMeal}</h4>
-            <button id="fav-btn">
+        <div class="meal-body-div">
+            <h4 class="meal-name">${mealData.strMeal}</h4>
+            <button class="fav-btn">
                 <i class="fas fa-heart"></i>
             </button>
         </div>           
         `;
-
-    //TODO: Add fav functionality
 
     allMealsDiv.appendChild(mealDiv);
 }
@@ -80,7 +79,6 @@ function showMealInfoInPopup(mealData) {
     const ingredients = [];
     let count = 1;
     while (mealData['strIngredient' + count]) {
-        console.log(`${mealData['strIngredient' + count]} - ${mealData['strMeasure' + count]}`);
         ingredients.push(
             `${mealData['strIngredient' + count]} - ${mealData['strMeasure' + count]}`
         );
