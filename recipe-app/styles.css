@@ -98,7 +98,7 @@ body {
 
 #all-meals-div {
     width: 100%;
-
+    overflow-y: scroll;
     /*border: 1px solid green;*/
 }
 
@@ -162,7 +162,7 @@ body {
 
 .popup-container.hidden {
     opacity: 0;
-    pointer-events: none;
+    pointer-events: none; /* The div is always on page. This property allows us to click past it into the main div */
 }
 
 .popup {
@@ -173,7 +173,7 @@ body {
     overflow-y: scroll;
     border-radius: 5px;
     padding: 0 2rem;
-    position: relative; /* To "position: fixed" the 'x' button within */
+    position: relative; /* To set "position: absolute" for the 'X' button within */
 
     /*border: 3px solid green;*/
 }

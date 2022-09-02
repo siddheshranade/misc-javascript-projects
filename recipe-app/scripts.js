@@ -1,18 +1,48 @@
-const randomMealAPILink = 'https://www.themealdb.com/api/json/v1/1/random.php';
+const randomMealURL = 'https://www.themealdb.com/api/json/v1/1/random.php';
+const searchMealURL = 'https://www.themealdb.com/api/json/v1/1/search.php?s=';
 
 const allMealsDiv = document.querySelector('#all-meals-div');
 const mealInfoDiv = document.getElementById('meal-info');
 const mealPopup = document.getElementById('meal-popup');
 const popupCloseButton = document.getElementById('close-popup');
+const searchInput = document.querySelector('#search-input');
+const searchForm = document.querySelector('form');
 
-fetch(randomMealAPILink)
-    .then(res => res.json())
-    .then(data => {
-        let mealData = data['meals'][0];
-        displayMealPreview(mealData);
-    });
+// On page load:
+displayRandomMeal();
+fetchFavMeals();
 
-function displayMealPreview(mealData) {
+searchForm.addEventListener('submit', (e) => {
+    e.preventDefault(); // Prevent page refresh
+    searchMeals();
+});
+
+function fetchFavMeals() {
+    //TODO
+}
+
+function searchMeals() {
+    fetch(`${searchMealURL}${searchInput.value}`)
+        .then(res => res.json())
+        .then(data => {
+            let meals = data['meals'];
+            meals.forEach(meal => {
+                allMealsDiv.innerHTML = ''; // Remove initially displayed random meal
+                displayMealPreviewTile(meal)
+            });
+        });
+}
+
+function displayRandomMeal() {
+    fetch(randomMealURL)
+        .then(res => res.json())
+        .then(data => {
+            let mealData = data['meals'][0];
+            displayMealPreviewTile(mealData);
+        });
+}
+
+function displayMealPreviewTile(mealData) {
     const mealDiv = document.createElement('div');
     mealDiv.setAttribute('id', 'meal');
     mealDiv.addEventListener('click', () => { showMealInfoInPopup(mealData); });
