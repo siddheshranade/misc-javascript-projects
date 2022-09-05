@@ -8,17 +8,17 @@ const popupCloseButton = document.getElementById('close-popup');
 const searchInput = document.querySelector('#search-input');
 const searchForm = document.querySelector('form');
 
-let favouriteMealIds = [];
+let favouriteMealIds = new Set(); //TODO: Add to localStorage
 
 displayRandomMeal();
-fetchFavMeals();
+fetchFavouriteMeals();
 
 searchForm.addEventListener('submit', (e) => {
     e.preventDefault(); // Prevent page refresh
     searchMeals();
 });
 
-function fetchFavMeals() {
+function fetchFavouriteMeals() {
     //TODO
 }
 
@@ -70,6 +70,29 @@ function displayMealPreviewTile(mealData) {
         `;
 
     allMealsDiv.appendChild(mealDiv);
+
+    const favButton = mealDiv.querySelector('.fav-btn'); // won't work with document.querySelector()
+    favButton.addEventListener('click', () => {
+        // alert('yo!');
+        if (favButton.classList.contains('active')) {
+            removeMealFromFavourites(mealData.idMeal);
+            favButton.classList.remove('active');
+        } else {
+            addMealToFavourites(mealData.idMeal);
+            favButton.classList.add('active');
+        }
+
+        fetchFavouriteMeals();
+        console.log('Fav meals: ', favouriteMealIds);
+    });
+}
+
+function addMealToFavourites(mealId) {
+    favouriteMealIds.add(mealId);
+}
+
+function removeMealFromFavourites(mealId) {
+    favouriteMealIds.delete(mealId);
 }
 
 function showMealInfoInPopup(mealData) {
@@ -107,4 +130,4 @@ function showMealInfoInPopup(mealData) {
 
 popupCloseButton.addEventListener('click', () => {
     mealPopup.classList.add('hidden');
-})
+});
