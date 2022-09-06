@@ -140,7 +140,6 @@ body {
 #all-meals-div {
     width: 100%;
     overflow-y: scroll;
-    /*border: 1px solid green;*/
 }
 
 #meal {
@@ -149,8 +148,6 @@ body {
     overflow: hidden;
     margin: 1.2rem;
     border-radius: 3px;
-
-    /*border: 1px solid brown;*/
 }
 
 .meal-image {
