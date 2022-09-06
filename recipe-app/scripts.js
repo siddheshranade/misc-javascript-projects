@@ -1,14 +1,14 @@
 const randomMealURL = 'https://www.themealdb.com/api/json/v1/1/random.php';
-const searchMealURL = 'https://www.themealdb.com/api/json/v1/1/search.php?s=';
+const searchMealByNameURL = 'https://www.themealdb.com/api/json/v1/1/search.php?s=';
+const searchMealByIdURL = 'https://www.themealdb.com/api/json/v1/1/lookup.php?i=';
 
 const allMealsDiv = document.querySelector('#all-meals-div');
+const favouriteMealsList = document.querySelector('#all-fav-meals');
 const mealInfoDiv = document.getElementById('meal-info');
 const mealPopup = document.getElementById('meal-popup');
 const popupCloseButton = document.getElementById('close-popup');
 const searchInput = document.querySelector('#search-input');
 const searchForm = document.querySelector('form');
-
-let favouriteMealIds = new Set(); //TODO: Add to localStorage
 
 displayRandomMeal();
 fetchFavouriteMeals();
@@ -18,12 +18,48 @@ searchForm.addEventListener('submit', (e) => {
     searchMeals();
 });
 
-function fetchFavouriteMeals() {
-    //TODO
+async function fetchFavouriteMeals() {
+    favouriteMealsList.innerHTML = '';
+
+    let mealIds = getFavouriteMealsIdsFromLS();
+    for (let i = 0; i < mealIds.length; i++) {
+        let meal = await getMealById(mealIds[i]);
+        // console.log('Fav meals from Id: ', meal.idMeal);
+        displayMealInFavouritesList(meal);
+    }
+}
+
+async function getMealById(id) {
+    const result = await fetch(`${searchMealByIdURL}${id}`);
+    const data = await result.json();
+    return data.meals[0];
+}
+
+function displayMealInFavouritesList(meal) {
+    const favMeal = document.createElement('li');
+    favMeal.innerHTML = `
+        <img
+            src="${meal.strMealThumb}"
+            alt="${meal.strMeal}"
+        /><span>${meal.strMeal}</span>
+        <button class="clear-button"><i class="fas fa-window-close"></i></button>
+    `
+
+    const closeButton = favMeal.querySelector(".clear-button");
+    closeButton.addEventListener('click', () => {
+        removeFavouriteMealIdFromLS(meal.idMeal);
+        fetchFavouriteMeals();
+    });
+
+    favMeal.addEventListener('click', () => {
+        showMealInfoInPopup(meal);
+    });
+
+    favouriteMealsList.appendChild(favMeal);
 }
 
 function searchMeals() {
-    fetch(`${searchMealURL}${searchInput.value}`)
+    fetch(`${searchMealByNameURL}${searchInput.value}`)
         .then(res => res.json())
         .then(data => {
             let meals = data['meals'];
@@ -75,24 +111,38 @@ function displayMealPreviewTile(mealData) {
     favButton.addEventListener('click', () => {
         // alert('yo!');
         if (favButton.classList.contains('active')) {
-            removeMealFromFavourites(mealData.idMeal);
+            removeFavouriteMealIdFromLS(mealData.idMeal);
             favButton.classList.remove('active');
         } else {
-            addMealToFavourites(mealData.idMeal);
+            addFavouriteMealIdToLS(mealData.idMeal);
             favButton.classList.add('active');
         }
 
         fetchFavouriteMeals();
-        console.log('Fav meals: ', favouriteMealIds);
+        console.log('Fav meals: ', localStorage.getItem('mealIds'));
     });
 }
 
-function addMealToFavourites(mealId) {
-    favouriteMealIds.add(mealId);
+function getFavouriteMealsIdsFromLS() {
+    let mealIds = JSON.parse(localStorage.getItem('mealIds'));
+
+    return mealIds ? mealIds : [];
 }
 
-function removeMealFromFavourites(mealId) {
-    favouriteMealIds.delete(mealId);
+function addFavouriteMealIdToLS(mealId) {
+    let mealIds = getFavouriteMealsIdsFromLS();
+    if (mealIds.includes(mealId)) {
+        return;
+    }
+
+    mealIds.push(mealId);
+    localStorage.setItem('mealIds', JSON.stringify(mealIds));
+}
+
+function removeFavouriteMealIdFromLS(mealId) {
+    let mealIds = getFavouriteMealsIdsFromLS();
+    mealIds.splice(mealIds.indexOf(mealId), 1);
+    localStorage.setItem('mealIds', JSON.stringify(mealIds));
 }
 
 function showMealInfoInPopup(mealData) {
