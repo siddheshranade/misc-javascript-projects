@@ -24,7 +24,6 @@ async function fetchFavouriteMeals() {
     let mealIds = getFavouriteMealsIdsFromLS();
     for (let i = 0; i < mealIds.length; i++) {
         let meal = await getMealById(mealIds[i]);
-        // console.log('Fav meals from Id: ', meal.idMeal);
         displayMealInFavouritesList(meal);
     }
 }
@@ -109,7 +108,6 @@ function displayMealPreviewTile(mealData) {
 
     const favButton = mealDiv.querySelector('.fav-btn'); // won't work with document.querySelector()
     favButton.addEventListener('click', () => {
-        // alert('yo!');
         if (favButton.classList.contains('active')) {
             removeFavouriteMealIdFromLS(mealData.idMeal);
             favButton.classList.remove('active');
@@ -119,7 +117,6 @@ function displayMealPreviewTile(mealData) {
         }
 
         fetchFavouriteMeals();
-        console.log('Fav meals: ', localStorage.getItem('mealIds'));
     });
 }
 
