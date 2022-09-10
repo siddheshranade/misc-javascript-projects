@@ -6,10 +6,12 @@ This is a collection of 10 web apps I implemented using vanilla JS, inspired by 
 
 Check out each project here:
 
-01. [Countdown timer](https://siddheshranade.github.io/misc-javascript-projects/countdown-timer/)
+1. [Countdown timer](https://siddheshranade.github.io/misc-javascript-projects/countdown-timer/)
 
-02. [Quiz app](https://siddheshranade.github.io/misc-javascript-projects/quiz-app/)
+2. [Quiz app](https://siddheshranade.github.io/misc-javascript-projects/quiz-app/)
 
-03. [Recipe app](https://siddheshranade.github.io/misc-javascript-projects/recipe-app/)
+3. [Recipe app](https://siddheshranade.github.io/misc-javascript-projects/recipe-app/)
 
-04. [Notes app](https://siddheshranade.github.io/misc-javascript-projects/notes-app/)
+4. [Notes app](https://siddheshranade.github.io/misc-javascript-projects/notes-app/)
+
+5. [Todo list app](https://siddheshranade.github.io/misc-javascript-projects/todo-app/)
