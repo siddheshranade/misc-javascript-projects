@@ -15,7 +15,7 @@ if (storedTodoItems && storedTodoItems.length) {
 function addTodoListElement(todoItem) {
     const listElement = document.createElement('li');
     listElement.innerHTML = todoItem && todoItem['name'] ? todoItem['name'] : inputTextElement.value;
-    if (todoItem && todoItem['completed'] === 'yes') {
+    if (todoItem && todoItem['completed']) {
         listElement.classList.add('cancelled-task');
     }
     listParentElement.appendChild(listElement);
@@ -42,7 +42,7 @@ function updateLocalStorage() {
         console.log(el.classList);
         listItems.push({
             'name' : el.innerHTML,
-            'completed' : el.classList.contains('cancelled-task') ? 'yes' : 'no'
+            'completed' : el.classList.contains('cancelled-task')
         });
     });
 
