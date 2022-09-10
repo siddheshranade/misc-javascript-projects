@@ -15,3 +15,7 @@ body {
     justify-content: center;
     align-items: center;
 }
+
+.cancelled-task {
+    text-decoration: line-through;
+}
