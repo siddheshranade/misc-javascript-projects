@@ -7,6 +7,109 @@
 body {
     margin: 0;
     padding: 0;
-    font-size: 16px;
     font-family: 'Poppins', sans-serif;
+    background-color: #22254b; /* Dark purple */
+}
+
+nav {
+    padding: 1rem;
+    background-color: #373b69; /* Light purple */
+
+    display: flex;
+    justify-content: flex-end;
+}
+
+#search-input {
+    background-color: transparent;
+    border: 2px solid #22254b; /* Dark purple */
+    border-radius: 50px;
+    color: #fff;
+    font-family: inherit;
+    font-size: 1rem;
+    padding: 0.5rem 1rem;
+}
+
+#search-input::placeholder {
+    color: #7378c5; /* Light purple */
+}
+
+#search-input:focus {
+    outline: none;
+    background-color: #22254b; /* Super dark purple */
+}
+
+main {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.movie {
+    background-color: #373b69; /* Light purple */
+    width: 300px;
+    border-radius: 3px;
+    box-shadow: 0 4px 5px rgba(0, 0, 0, 0.2);
+    overflow: hidden; /* This prevents the .movie-overview popup from being shown before mouse hover */
+    margin: 1rem;
+    position: relative;
+}
+
+.movie-poster {
+    width: 100%;
+}
+
+.movie-info {
+    color: #eee;
+    padding: 0.5rem 1rem 1rem;
+    letter-spacing: 0.5px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.movie-title {
+    font-size: 1.2rem;
+    font-weight: bold;
+    margin: 0;
+}
+
+.movie-rating {
+    background-color: #22254b;
+    border-radius: 3px;
+    font-weight: bold;
+    padding: 0.25rem 0.5rem;
+}
+
+.movie-rating.green {
+    color: #27bd27;
+}
+
+.movie-rating.orange {
+    color: orange;
+}
+
+.movie-rating.red {
+    color: #bd2a2a;
+}
+
+.movie-overview {
+    background-color: #fff;
+    padding: 1rem;
+    overflow: auto;
+    max-height: 100%;
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    transform: translateY(101%);
+    transition: transform 0.3s ease-in;
+}
+
+.movie-overview h3 {
+    margin-top: 0;
+}
+
+.movie:hover .movie-overview {
+    transform: translateY(0);
 }

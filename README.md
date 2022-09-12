@@ -15,3 +15,5 @@ Check out each project here:
 4. [Notes app](https://siddheshranade.github.io/misc-javascript-projects/notes-app/)
 
 5. [Todo list app](https://siddheshranade.github.io/misc-javascript-projects/todo-app/)
+
+6. [Movie app](https://siddheshranade.github.io/misc-javascript-projects/movie-app/)
